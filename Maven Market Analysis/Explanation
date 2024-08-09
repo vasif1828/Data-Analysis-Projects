@@ -1,0 +1,64 @@
+This project is about building a dashboard using the data of Maven Market sales. It has the following tables: 
+
+MavenMarket_Customers.csv
+MavenMarket_Products.csv
+MavenMarket_Stores.csv
+MavenMarket_Regions.csv
+MavenMarket_Calendar.csv
+MavenMarket_Returns.csv 
+MavenMarket Transactions.csv
+
+in the first step, I uploaded all the tables to the Power BI, made some transformations on it, updated the data types, table names and added some columns. 
+
+in the second step, I created the relationships between the tables by using foreign and primary keys. 
+
+in the third step, I added some columns by using DAX query language:
+  1. Calendar Table: "Weekend" column which shows whether the date is weekend or weekday. If it is weekend it shows "Y", otherwise "N"
+  2. Calendar Table: "End of month" column which shows the last date of the month given in the specific row. 
+  3. Customer Table: "Current Age" column which shows the current age of customer.
+  4. Customer Table: "Priority" column which equals "High" if the customer has his/her own home and have "golden membership card". Otherwise, it shows "Standard" 
+  5. Customer Table: "Short_Country" column which returns the first three characters of the customer country and then upparcase it. 
+  6. Customer Table: "House Number" column which extracts the first numbers before the space from the "customer_address" column
+  7. Products Table: "Price_Tier" column which is equal "High"  if the <retail_price is greater than 3$>; "Mid" if <retail price is greater than 1$>, "Low", otherwise.
+  8. Stores Table: "Years_Since_Remodel" column which shows how many years passed after the last remodel date. 
+These are the added columns which created by DAX query language. The formuls used to create these columns can be seen in the "VasifAsadov_MavenMarket_Analysis.pbix" file
+
+
+In the fourth step, I created measurements table which consists of the DAX calculation results which will be used in the visualization charts:
+  1. "Quantity Sold" which shows the sum of sold (or transacted) products. 
+  2. "Quantity Returned" which shows the sum of returned products. 
+  3. "Total Transactions" shows the count of all transactions
+  4. "Total Returns" shows the count of all returns.
+  5. "Return Rate" shows the ratio of the quantity return to quantity sold.
+  6. "Weekend Transactions" shows the number of transactions occured on weekends.
+  7. "% Weekend Transactions" shows how much percentage of total transactions occured in weekends
+  8. "All transactions" shows all transactions by removing filter context (with "ALL" function)
+  9. "All Returns" shows all returns by removing filter context (with "All" function)
+  10. "Total Revenue" calculates the total income by multiplying transaction quantity with product_retail_price within row context, and then summing all row results
+  11. "Total Cost" calculates the total cost by multiplying transaction quantity with the product_cost within row context (iterators), and then summing all row results. 
+  12. "Profit Margin" shows the ratio of total profit to total revenue
+  13. "Unique Products" shows the number of unique product names
+  14. "YTD Revenue" calculates the year-to-date total revenue
+  15. "60-Day Revenue" shows the total revenue over 60 day period
+  16. "Last Month Transactions", "Last Month Revenue", "Last Month Profit" and "Last Month Returns" shows the transactions, revenue, profit and returns of the previous
+month, respectively. 
+  17. "Revenue Target" shows the target of the next month, which is equal to 1.05 of the revenue of the previous month.
+
+In the final step, I created an interactive dashboard. I put 
+  1. A matrix which shows [total transactions, total profit, profit margin, return rate] by [product_brand]. I applied Top N filtering, hence the matrix shows the top
+30 countries with the highest total transactions.
+  2. KPI cards which show transaction, profit and returns of the previous month. 
+  3. A card wich shows the number of total transactions
+  4. A map that shows in which countries there are Maven Market Stores. 
+  5. A slicer that shows different countries 
+  6. Bar char which shows total revenue by week. 
+  7. And a gauge that shows the total revenue, and revenue target. 
+
+
+The project consists of these steps. 
+
+
+
+
+
+
