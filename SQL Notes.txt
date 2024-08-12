@@ -1,0 +1,79 @@
+-- TRİGGERS -- 
+
+Triggers are used to automate the tasks (the tasks which are executed after the defined commmand is executed)
+
+Example: 
+
+CREATE TRIGGER my_adder_trigger AFTER INSERT ON mytable
+SET @salary_total_amount = @salary_total_amount + NEW.salary_amount ; 
+
+I have created a TRIGGER which is activated after any INSERT command. We have the following table, let's see what happens after executing insert function
+
+              name      |    surname        |  salary_amount |  salary_total_amount
+              Aghamirza |   Khudoyberganov  |    1500        |      1500 
+
+
+
+INSERT INTO mytable VALUES ('Alexander', 'Rybak', 5500); 
+
+              name      |    surname        |  salary_amount |  salary_total_amount
+              Aghamirza |   Khudoyberganov  |    1500        |      1500 
+              Alexander |   Rybak           |     5500       |      7000
+
+
+* MySQL supports only row-level TRIGGERS, however in other syntax languages, statement-level Triggers are supported. 
+* MySQL doesn`t support ALTER TRIGGER, therefore in order to modify TRIGGER, just DROP it, then CREATE it!
+* INSERT triggers do not work with OLD key (old value), DELETE triggers do not work with NEW key. 
+
+Syntax of TRIGGER:
+
+        CREATE TRIGGER trigger_name                                               % creating trigger by giving the name
+        {BEFORE | AFTER} {INSERT | UPDATE | DELETE}                               % use either BEFORE or AFTER, INSERT or UPDATE or DELETE
+        ON table_name FOR EACH ROW                                                % apply it for each row in the given table
+        
+        {{FOLLOWS | PRECEDES} existing _trigger_name}                             % this determines whether the trigger is applied after previous trigger
+        
+        [some statement we want to execute by trigger]                            % given statement
+        
+        WHERE column_name = {NEW | OLD}.column_name                               % don't use NEW with DELETE, and OLD with INSERT 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
